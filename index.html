@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Анна и Михаил: приглашение на свадьбу</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#faf6f1; --surface:#ffffff; --ink:#2b2622; --muted:#7a6f66;
+  --accent:#a86f58; --accent-ink:#ffffff; --line:#e6dccf; --soft:#f1e6da;
+  --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#1d1916; --surface:#272220; --ink:#f3ebe3; --muted:#b3a79c;
+    --accent:#d39a83; --accent-ink:#1d1916; --line:#3d3530; --soft:#322a26;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1d1916; --surface:#272220; --ink:#f3ebe3; --muted:#b3a79c;
+  --accent:#d39a83; --accent-ink:#1d1916; --line:#3d3530; --soft:#322a26;
+  color-scheme:dark;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.65 var(--sans)}
+h1,h2,h3{font-family:var(--serif);font-weight:500;margin:0;line-height:1.15}
+h2{font-size:clamp(30px,6vw,40px);text-align:center;margin-bottom:8px}
+.eyebrow{font:500 12px/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--accent);text-align:center;margin-bottom:14px}
+.wrap{max-width:720px;margin:0 auto;padding:72px 22px}
+.lead{text-align:center;color:var(--muted);max-width:480px;margin:0 auto 36px}
+.divider{width:56px;height:1px;background:var(--accent);margin:22px auto}
+
+/* Hero */
+.hero{min-height:92vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 22px;background:radial-gradient(circle at 50% 0,var(--soft),transparent 70%)}
+.hero .names{font-size:clamp(54px,13vw,104px);letter-spacing:.01em}
+.hero .amp{color:var(--accent);font-style:italic;padding:0 .12em}
+.hero .date{font:500 13px/1 var(--sans);letter-spacing:.28em;text-transform:uppercase;margin-top:6px}
+.hero .where{color:var(--muted);margin-top:8px}
+.btn{display:inline-block;margin-top:34px;padding:14px 30px;border-radius:999px;border:0;background:var(--accent);color:var(--accent-ink);font:500 15px/1 var(--sans);text-decoration:none;cursor:pointer}
+.btn:hover{opacity:.9}
+
+/* Cards */
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px}
+.card h3{font-size:24px;margin-bottom:6px}
+.card p{margin:0;color:var(--muted);font-size:15px}
+
+/* Program */
+.timeline{list-style:none;margin:0;padding:0;border-left:1px solid var(--accent)}
+.timeline li{position:relative;padding:0 0 26px 26px}
+.timeline li::before{content:"";position:absolute;left:-5px;top:9px;width:9px;height:9px;border-radius:50%;background:var(--accent)}
+.timeline .t{font:500 13px/1 var(--sans);letter-spacing:.14em;color:var(--accent)}
+.timeline h3{font-size:24px;margin-top:6px}
+.timeline p{margin:2px 0 0;color:var(--muted);font-size:15px}
+
+/* Palette */
+.palette{display:flex;justify-content:center;gap:12px;margin-top:20px}
+.palette i{width:34px;height:34px;border-radius:50%;border:1px solid var(--line)}
+
+/* Form */
+.form{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:28px 22px}
+fieldset{border:0;padding:0;margin:0 0 22px}
+legend,label.l{display:block;font:500 14px/1.3 var(--sans);margin-bottom:8px;padding:0}
+input[type=text],input[type=number],textarea{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);font:inherit}
+input:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:1px}
+textarea{min-height:84px;resize:vertical}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{cursor:pointer}
+.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips span{display:inline-block;padding:9px 16px;border:1px solid var(--line);border-radius:999px;font-size:14px;background:var(--bg)}
+.chips input:checked+span{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.chips input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
+.hint{font-size:13px;color:var(--muted);margin-top:6px}
+.thanks{display:none;text-align:center;padding:10px 0}
+.thanks h3{font-size:30px;margin-bottom:6px}
+.note{margin-top:14px;font-size:12.5px;color:var(--muted);text-align:center}
+
+footer{text-align:center;color:var(--muted);font-size:14px;padding:40px 22px 56px;border-top:1px solid var(--line)}
+footer .names{font-family:var(--serif);font-size:28px;color:var(--ink)}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="eyebrow">Мы женимся</div>
+  <h1 class="names">Анна<span class="amp">&amp;</span>Михаил</h1>
+  <div class="divider"></div>
+  <div class="date">12 июля 2027</div>
+  <div class="where">Загородный клуб «Берег», Москва</div>
+  <a class="btn" href="#rsvp">Подтвердить присутствие</a>
+</header>
+
+<main>
+  <section class="wrap" id="details">
+    <div class="eyebrow">Детали</div>
+    <h2>Когда и где</h2>
+    <p class="lead">Будем рады видеть вас в нашей компании в этот особенный день.</p>
+    <div class="grid">
+      <div class="card"><h3>Дата и время</h3><p>12 июля 2027, сбор гостей в 15:30</p></div>
+      <div class="card"><h3>Место</h3><p>Загородный клуб «Берег», ул. Лесная, 1. Здесь будет ссылка на карту.</p></div>
+      <div class="card"><h3>Как добраться</h3><p>Парковка на территории. Трансфер от метро по запросу в анкете.</p></div>
+    </div>
+  </section>
+
+  <section class="wrap" id="program" style="padding-top:0">
+    <div class="eyebrow">Программа</div>
+    <h2>Как пройдёт день</h2>
+    <div class="divider"></div>
+    <ul class="timeline">
+      <li><div class="t">15:30</div><h3>Сбор гостей</h3><p>Welcome-зона, лёгкие закуски.</p></li>
+      <li><div class="t">16:00</div><h3>Церемония</h3><p>На открытой площадке у воды.</p></li>
+      <li><div class="t">17:30</div><h3>Банкет</h3><p>Ужин, тосты и первый танец.</p></li>
+      <li><div class="t">23:00</div><h3>Завершение</h3><p>Отправление трансферов.</p></li>
+    </ul>
+  </section>
+
+  <section class="wrap" id="dress" style="padding-top:0;text-align:center">
+    <div class="eyebrow">Дресс-код</div>
+    <h2>Тёплые, мягкие тона</h2>
+    <p class="lead" style="margin-bottom:0">Будем рады, если вы поддержите палитру дня. Удобная обувь приветствуется: часть праздника пройдёт на траве.</p>
+    <div class="palette" aria-label="Цвета дресс-кода">
+      <i style="background:#e8d5c4"></i><i style="background:#c9a58f"></i><i style="background:#a86f58"></i><i style="background:#7d8b6a"></i><i style="background:#f4ede4"></i>
+    </div>
+  </section>
+
+  <section class="wrap" id="rsvp" style="padding-top:0">
+    <div class="eyebrow">Анкета гостя</div>
+    <h2>Подтвердите присутствие</h2>
+    <p class="lead">Ответьте, пожалуйста, до 1 июня 2027. Это поможет нам подготовить меню и рассадку.</p>
+
+    <form class="form" id="rsvpForm" novalidate>
+      <fieldset>
+        <label class="l" for="name">Ваше имя</label>
+        <input type="text" id="name" name="name" placeholder="Имя и фамилия" autocomplete="name" required>
+      </fieldset>
+
+      <fieldset>
+        <legend>Вы придёте?</legend>
+        <div class="chips">
+          <label><input type="radio" name="attend" value="Да" checked><span>Да, с радостью</span></label>
+          <label><input type="radio" name="attend" value="Нет"><span>К сожалению, нет</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <label class="l" for="plus">Сколько человек будет с вами?</label>
+        <input type="number" id="plus" name="plus" min="0" max="5" value="0">
+        <div class="hint">Не считая вас. Если приглашение именное, оставьте 0.</div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Что вы предпочитаете пить?</legend>
+        <div class="chips">
+          <label><input type="checkbox" name="drinks" value="Красное вино"><span>Красное вино</span></label>
+          <label><input type="checkbox" name="drinks" value="Белое вино"><span>Белое вино</span></label>
+          <label><input type="checkbox" name="drinks" value="Шампанское"><span>Шампанское</span></label>
+          <label><input type="checkbox" name="drinks" value="Пиво"><span>Пиво</span></label>
+          <label><input type="checkbox" name="drinks" value="Крепкое"><span>Крепкое</span></label>
+          <label><input type="checkbox" name="drinks" value="Безалкогольное"><span>Безалкогольное</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <label class="l" for="diet">Аллергии и пищевые предпочтения</label>
+        <textarea id="diet" name="diet" placeholder="Например, вегетарианское меню или аллергия на орехи"></textarea>
+      </fieldset>
+
+      <fieldset>
+        <legend>Нужен ли трансфер?</legend>
+        <div class="chips">
+          <label><input type="radio" name="transfer" value="Да"><span>Да</span></label>
+          <label><input type="radio" name="transfer" value="Нет" checked><span>Нет</span></label>
+        </div>
+      </fieldset>
+
+      <button class="btn" type="submit" style="width:100%;margin-top:6px">Отправить ответ</button>
+      <div class="note"></div>
+
+      <div class="thanks" id="thanks">
+        <h3>Спасибо!</h3>
+        <p class="lead" style="margin:0">Мы получили ваш ответ и ждём вас 12 июля.</p>
+      </div>
+    </form>
+  </section>
+</main>
+
+<footer>
+  <div class="names">Анна &amp; Михаил</div>
+  <p>Вопросы? Напишите организатору: <a href="#" style="color:var(--accent)">@organizer</a> или позвоните +7 000 000-00-00</p>
+</footer>
+
+<script>
+/* ===== НАСТРОЙКИ АНКЕТЫ (Google Form) ===== */
+var CONFIG = {
+  viewUrl: "https://docs.google.com/forms/d/e/1FAIpQLSe7-uEWF3K-SV8EIwJOJsbCyHIvJKs3DADCx9QryzlKVsgorQ/viewform",
+  formUrl: "https://docs.google.com/forms/d/e/1FAIpQLSe7-uEWF3K-SV8EIwJOJsbCyHIvJKs3DADCx9QryzlKVsgorQ/formResponse",
+  /* Номера полей из предварительно заполненной ссылки формы, вида "entry.123456789".
+     Пока поля пустые, на странице показывается кнопка перехода в Google Form. */
+  entries: {
+    name:     "entry.309604730",
+    attend:   "entry.1514271724",
+    plus:     "entry.1998235227",
+    drinks:   "entry.512884427",
+    diet:     "entry.44509896",
+    transfer: "entry.1409965520"
+  }
+};
+
+(function(){
+  var f=document.getElementById('rsvpForm'), t=document.getElementById('thanks');
+  var E=CONFIG.entries;
+  var ready=Object.keys(E).every(function(k){return E[k];});
+
+  if(!ready){
+    f.innerHTML='<div style="text-align:center"><p class="lead" style="margin-bottom:22px">Заполните короткую анкету: она займёт пару минут.</p>'+
+      '<a class="btn" style="margin-top:0" href="'+CONFIG.viewUrl+'" target="_blank" rel="noopener">Открыть анкету</a></div>';
+    return;
+  }
+
+  var note=f.querySelector('.note');
+  note.textContent='Ответы сохраняются в таблицу организатора.';
+
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var n=document.getElementById('name');
+    if(!n.value.trim()){n.focus();n.style.borderColor='var(--accent)';return;}
+    var d=new FormData(f), body=new URLSearchParams();
+    body.append(E.name,d.get('name'));
+    body.append(E.attend,d.get('attend'));
+    body.append(E.plus,d.get('plus')||'0');
+    d.getAll('drinks').forEach(function(v){body.append(E.drinks,v);});
+    body.append(E.diet,d.get('diet')||'');
+    body.append(E.transfer,d.get('transfer'));
+    var btn=f.querySelector('button[type=submit]');
+    btn.disabled=true; btn.textContent='Отправляем…';
+    fetch(CONFIG.formUrl,{method:'POST',mode:'no-cors',body:body}).then(function(){
+      Array.prototype.forEach.call(f.querySelectorAll('fieldset,button,.note'),function(el){el.style.display='none';});
+      t.style.display='block';
+    }).catch(function(){
+      btn.disabled=false; btn.textContent='Отправить ответ';
+      note.textContent='Не получилось отправить. Проверьте интернет и попробуйте ещё раз.';
+    });
+  });
+})();
+</script>
+</body>
+</html>
